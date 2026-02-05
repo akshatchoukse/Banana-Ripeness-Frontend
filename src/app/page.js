@@ -3,7 +3,8 @@
 import { useMemo, useRef, useState } from "react";
 import styles from "./page.module.css";
 
-const API_URL = "http://localhost:8000/analyze";
+const API_URL = "http://127.0.0.1:8000/analyze";
+
 
 const STAGES = ["Image Selected", "Banana Check", "Ripeness Result"];
 
