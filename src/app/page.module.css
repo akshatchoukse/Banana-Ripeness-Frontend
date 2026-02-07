@@ -6,7 +6,7 @@
   color: #e9eef7;
   display: flex;
   justify-content: center;
-  padding: 28px 16px;
+  padding: 22px 14px;
 }
 
 .shell {
@@ -14,18 +14,25 @@
   max-width: 1100px;
 }
 
+/* Header */
 .header {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 14px;
   margin-bottom: 18px;
+  flex-wrap: wrap;
 }
 
 .brand {
   display: flex;
   align-items: center;
   gap: 12px;
+  min-width: 0;
+}
+
+.brandText {
+  min-width: 0;
 }
 
 .logo {
@@ -38,18 +45,21 @@
   border: 1px solid rgba(255, 255, 255, 0.14);
   box-shadow: 0 10px 30px rgba(0,0,0,0.35);
   font-size: 22px;
+  flex-shrink: 0;
 }
 
 .title {
   font-size: 18px;
   font-weight: 800;
   letter-spacing: 0.2px;
+  line-height: 1.2;
 }
 
 .subtitle {
   font-size: 13px;
   opacity: 0.78;
   margin-top: 2px;
+  line-height: 1.25;
 }
 
 .badge {
@@ -59,8 +69,10 @@
   background: rgba(255,255,255,0.08);
   border: 1px solid rgba(255,255,255,0.14);
   white-space: nowrap;
+  align-self: flex-start;
 }
 
+/* Layout grid */
 .grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -74,6 +86,7 @@
   }
 }
 
+/* Card */
 .card {
   background: rgba(255,255,255,0.06);
   border: 1px solid rgba(255,255,255,0.12);
@@ -96,8 +109,10 @@
   margin: 6px 0 0 0;
   font-size: 13px;
   opacity: 0.75;
+  line-height: 1.35;
 }
 
+/* Buttons */
 .actions {
   padding: 16px;
   display: grid;
@@ -113,6 +128,7 @@
   font-weight: 800;
   cursor: pointer;
   transition: transform 0.08s ease, opacity 0.08s ease, background 0.12s ease;
+  width: 100%;
 }
 
 .btnPrimary:active,
@@ -147,6 +163,7 @@
   padding: 0 16px 16px 16px;
   font-size: 12px;
   opacity: 0.75;
+  line-height: 1.35;
 }
 
 .hidden {
@@ -174,6 +191,10 @@
   margin-top: 12px;
 }
 
+.cameraBar button {
+  flex: 1;
+}
+
 /* Preview */
 .previewArea {
   padding: 16px;
@@ -181,6 +202,7 @@
 
 .previewImg {
   width: 100%;
+  aspect-ratio: 16 / 11;
   border-radius: 16px;
   border: 1px solid rgba(255,255,255,0.14);
   box-shadow: 0 14px 30px rgba(0,0,0,0.35);
@@ -195,6 +217,8 @@
   display: grid;
   place-items: center;
   background: rgba(0,0,0,0.18);
+  padding: 16px;
+  text-align: center;
 }
 
 .placeholderIcon {
@@ -245,6 +269,7 @@
   font-weight: 900;
   background: rgba(255,255,255,0.12);
   border: 1px solid rgba(255,255,255,0.14);
+  flex-shrink: 0;
 }
 
 .stepLabel {
@@ -260,6 +285,10 @@
   gap: 10px;
 }
 
+.analyzeBar button {
+  flex: 1;
+}
+
 /* Alerts / Result */
 .alertError,
 .alertWarn {
@@ -267,6 +296,7 @@
   border-radius: 16px;
   padding: 12px 12px;
   border: 1px solid rgba(255,255,255,0.16);
+  word-wrap: break-word;
 }
 
 .alertError {
@@ -285,6 +315,7 @@
 .alertBody {
   font-size: 13px;
   opacity: 0.85;
+  line-height: 1.35;
 }
 
 .resultCard {
@@ -297,9 +328,10 @@
 
 .resultTop {
   display: flex;
-  align-items: start;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 10px;
+  flex-wrap: wrap;
 }
 
 .resultLabel {
@@ -386,6 +418,7 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
+  text-align: center;
 }
 
 .code {
@@ -395,4 +428,47 @@
   border-radius: 10px;
   background: rgba(255,255,255,0.08);
   border: 1px solid rgba(255,255,255,0.12);
+  word-break: break-word;
+}
+
+/* Extra Mobile Fix */
+@media (max-width: 480px) {
+  .bg {
+    padding: 16px 10px;
+  }
+
+  .title {
+    font-size: 16px;
+  }
+
+  .subtitle {
+    font-size: 12px;
+  }
+
+  .badge {
+    font-size: 11px;
+    padding: 6px 9px;
+  }
+
+  .resultLabel {
+    font-size: 20px;
+  }
+
+  .cardHeader {
+    padding: 14px 14px 0 14px;
+  }
+
+  .actions,
+  .cameraWrap,
+  .previewArea {
+    padding: 14px;
+  }
+
+  .steps {
+    padding: 0 14px 10px 14px;
+  }
+
+  .analyzeBar {
+    padding: 0 14px 14px 14px;
+  }
 }

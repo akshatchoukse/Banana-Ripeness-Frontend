@@ -5,7 +5,6 @@ import styles from "./page.module.css";
 
 const API_URL = "https://banana-ripeness-backend.onrender.com/analyze";
 
-
 const STAGES = ["Image Selected", "Banana Check", "Ripeness Result"];
 
 function formatPct(x) {
@@ -56,7 +55,9 @@ export default function Page() {
         video: { facingMode: "environment" },
         audio: false,
       });
+
       streamRef.current = stream;
+
       if (videoRef.current) {
         videoRef.current.srcObject = stream;
         await videoRef.current.play();
@@ -95,6 +96,7 @@ export default function Page() {
     ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
 
     const blob = await new Promise((resolve) => canvas.toBlob(resolve, "image/jpeg", 0.92));
+
     if (!blob) {
       setError("Could not capture image. Please try again.");
       return;
@@ -102,6 +104,7 @@ export default function Page() {
 
     stopCamera();
     const url = URL.createObjectURL(blob);
+
     setImageURL(url);
     setImageBlob(blob);
     setMode("preview");
@@ -137,16 +140,15 @@ export default function Page() {
 
   async function analyze() {
     if (!imageBlob) return;
+
     setBusy(true);
     setError(null);
     setResult(null);
     setMode("analyzing");
 
-    // stage 1
     setStepIndex(0);
 
     try {
-      // stage 2
       setStepIndex(1);
 
       const formData = new FormData();
@@ -162,9 +164,7 @@ export default function Page() {
         throw new Error(data?.error || "Failed to analyze image.");
       }
 
-      // stage 3
       setStepIndex(2);
-
       setResult(data);
       setMode("result");
     } catch (e) {
@@ -181,16 +181,19 @@ export default function Page() {
         <header className={styles.header}>
           <div className={styles.brand}>
             <div className={styles.logo}>🍌</div>
-            <div>
+            <div className={styles.brandText}>
               <div className={styles.title}>BananaRipeness AI</div>
-              <div className={styles.subtitle}>Camera ya Gallery se photo lo — ripeness detect karo</div>
+              <div className={styles.subtitle}>
+                Camera ya Gallery se photo lo — ripeness detect karo
+              </div>
             </div>
           </div>
+
           <div className={styles.badge}>Next.js + FastAPI</div>
         </header>
 
         <main className={styles.grid}>
-          {/* Left: Capture/Upload */}
+          {/* Capture Section */}
           <section className={styles.card}>
             <div className={styles.cardHeader}>
               <h2>Capture</h2>
@@ -199,11 +202,19 @@ export default function Page() {
 
             {mode === "camera" ? (
               <div className={styles.cameraWrap}>
-                <video ref={videoRef} className={styles.video} playsInline />
+                <video
+                  ref={videoRef}
+                  className={styles.video}
+                  playsInline
+                  autoPlay
+                  muted
+                />
+
                 <div className={styles.cameraBar}>
                   <button className={styles.btnGhost} onClick={closeCamera}>
                     Back
                   </button>
+
                   <button className={styles.btnPrimary} onClick={capturePhoto}>
                     Capture
                   </button>
@@ -214,6 +225,7 @@ export default function Page() {
                 <button className={styles.btnPrimary} onClick={openCamera}>
                   📷 Use Camera
                 </button>
+
                 <button className={styles.btnSecondary} onClick={pickFromGallery}>
                   🖼 Upload from Gallery
                 </button>
@@ -235,7 +247,7 @@ export default function Page() {
             </div>
           </section>
 
-          {/* Right: Preview + Steps + Result */}
+          {/* Analyze Section */}
           <section className={styles.card}>
             <div className={styles.cardHeader}>
               <h2>Analyze</h2>
@@ -257,8 +269,14 @@ export default function Page() {
               {STAGES.map((s, idx) => {
                 const active = idx === stepIndex;
                 const done = idx < stepIndex;
+
                 return (
-                  <div key={s} className={`${styles.step} ${active ? styles.stepActive : ""} ${done ? styles.stepDone : ""}`}>
+                  <div
+                    key={s}
+                    className={`${styles.step} ${active ? styles.stepActive : ""} ${
+                      done ? styles.stepDone : ""
+                    }`}
+                  >
                     <div className={styles.stepDot}>{done ? "✓" : idx + 1}</div>
                     <div className={styles.stepLabel}>{s}</div>
                   </div>
@@ -271,7 +289,11 @@ export default function Page() {
                 Reset
               </button>
 
-              <button className={styles.btnPrimary} onClick={analyze} disabled={!canAnalyze}>
+              <button
+                className={styles.btnPrimary}
+                onClick={analyze}
+                disabled={!canAnalyze}
+              >
                 {busy ? "Analyzing..." : "Analyze"}
               </button>
             </div>
@@ -284,10 +306,19 @@ export default function Page() {
                     <div className={styles.alertBody}>
                       Please take a clear banana photo. Try better lighting and a cleaner background.
                     </div>
+
                     <div className={styles.metaRow}>
-                      <span className={styles.metaPill}>Banana confidence: {formatPct(result.banana_confidence)}</span>
-                      {result?.warnings?.too_dark && <span className={styles.metaPill}>Too dark</span>}
-                      {result?.warnings?.too_blurry && <span className={styles.metaPill}>Too blurry</span>}
+                      <span className={styles.metaPill}>
+                        Banana confidence: {formatPct(result.banana_confidence)}
+                      </span>
+
+                      {result?.warnings?.too_dark && (
+                        <span className={styles.metaPill}>Too dark</span>
+                      )}
+
+                      {result?.warnings?.too_blurry && (
+                        <span className={styles.metaPill}>Too blurry</span>
+                      )}
                     </div>
                   </div>
                 ) : (
@@ -295,8 +326,11 @@ export default function Page() {
                     <div className={styles.resultTop}>
                       <div>
                         <div className={styles.resultLabel}>{result.ripeness}</div>
-                        <div className={styles.resultSub}>Confidence: {formatPct(result.confidence)}</div>
+                        <div className={styles.resultSub}>
+                          Confidence: {formatPct(result.confidence)}
+                        </div>
                       </div>
+
                       <div className={styles.okBadge}>✅ Banana detected</div>
                     </div>
 
@@ -304,7 +338,12 @@ export default function Page() {
                       <div className={styles.barTrack}>
                         <div
                           className={styles.barFill}
-                          style={{ width: `${Math.min(100, Math.max(0, (result.confidence || 0) * 100))}%` }}
+                          style={{
+                            width: `${Math.min(
+                              100,
+                              Math.max(0, (result.confidence || 0) * 100)
+                            )}%`,
+                          }}
                         />
                       </div>
                     </div>
@@ -315,9 +354,17 @@ export default function Page() {
                     </div>
 
                     <div className={styles.metaRow}>
-                      <span className={styles.metaPill}>Banana confidence: {formatPct(result.banana_confidence)}</span>
-                      {result?.warnings?.too_dark && <span className={styles.metaPill}>Too dark</span>}
-                      {result?.warnings?.too_blurry && <span className={styles.metaPill}>Too blurry</span>}
+                      <span className={styles.metaPill}>
+                        Banana confidence: {formatPct(result.banana_confidence)}
+                      </span>
+
+                      {result?.warnings?.too_dark && (
+                        <span className={styles.metaPill}>Too dark</span>
+                      )}
+
+                      {result?.warnings?.too_blurry && (
+                        <span className={styles.metaPill}>Too blurry</span>
+                      )}
                     </div>
                   </div>
                 )}
