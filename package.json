@@ -8,15 +8,13 @@
     "start": "next start",
     "lint": "eslint"
   },
-  "dependencies": {
-    "next": "16.1.6",
-    "react": "19.2.3",
-    "react-dom": "19.2.3"
-  },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
     "eslint": "^9",
-    "eslint-config-next": "16.1.6",
     "tailwindcss": "^4"
+  },
+  "dependencies": {
+    "eslint-config-next": "^15.2.0",
+    "next": "^15.2.0"
   }
 }
