@@ -182,9 +182,9 @@ export default function Page() {
           <div className={styles.brand}>
             <div className={styles.logo}>🍌</div>
             <div className={styles.brandText}>
-              <div className={styles.title}>BananaRipeness AI</div>
+              <div className={styles.title}>Color Recognition using Neural Networks to Determine the Ripeness of Banana</div>
               <div className={styles.subtitle}>
-                Camera ya Gallery se photo lo — ripeness detect karo
+                Use Camera or Upload Image from Gallery
               </div>
             </div>
           </div>
@@ -243,7 +243,7 @@ export default function Page() {
             {error && <div className={styles.alertError}>⚠️ {error}</div>}
 
             <div className={styles.smallNote}>
-              Tip: Agar banana frame mein clearly nahi hai, “No banana detected” aa sakta hai.
+              Tip: if Banana is not in Frame or not visible clearly, "No Banana Detected" may show.
             </div>
           </section>
 
