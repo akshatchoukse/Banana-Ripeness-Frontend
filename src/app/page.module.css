@@ -1,0 +1,135 @@
+.bg { min-height: 100vh; padding: 24px; background: linear-gradient(135deg, #f9fbef, #eef4ff); }
+.shell { max-width: 1200px; margin: 0 auto; }
+.header { display: flex; justify-content: space-between; gap: 16px; align-items: flex-start; margin-bottom: 20px; }
+.header h1 { margin: 0 0 8px; font-size: 30px; }
+.header p { margin: 0; color: #555; }
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.card, .historyCard, .authCard { background: #fff; border-radius: 20px; padding: 20px; box-shadow: 0 12px 30px rgba(0,0,0,0.08); }
+.authPage { min-height: 100vh; display: grid; place-items: center; padding: 20px; background: linear-gradient(135deg, #fff7cc, #eef4ff); }
+.authCard { width: 100%; max-width: 460px; }
+.authForm { display: grid; gap: 16px; margin-top: 16px; }
+.fieldWrap { display: grid; gap: 4px; }
+.authForm input { height: 44px; border: 1px solid #ddd; border-radius: 10px; padding: 0 12px; }
+.row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 12px; }
+.btnPrimary, .btnSecondary, .btnGhost, .linkBtn { border: none; border-radius: 10px; padding: 12px 16px; cursor: pointer; }
+.btnPrimary { background: #f5b400; color: #111; font-weight: 700; }
+.btnSecondary { background: #1f6feb; color: #fff; }
+.btnGhost { background: #eef1f5; color: #111; }
+.linkBtn { background: transparent; color: #1f6feb; padding-left: 0; margin-top: 10px; }
+.previewArea, .placeholder { min-height: 260px; display: grid; place-items: center; border: 2px dashed #d7dce5; border-radius: 16px; margin-top: 16px; overflow: hidden; }
+.previewImg, .video { width: 100%; height: auto; max-height: 420px; object-fit: contain; border-radius: 16px; }
+.cameraWrap { margin-top: 12px; }
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 16px 0; }
+.step { border: 1px solid #e5e7eb; border-radius: 12px; padding: 10px; text-align: center; color: #666; }
+.stepActive { border-color: #1f6feb; color: #1f6feb; }
+.stepDone { border-color: #13a34a; color: #13a34a; }
+.alertError { margin-top: 12px; background: #fff1f1; color: #b42318; border-radius: 10px; padding: 12px; }
+.resultCard { background: #f8fff0; border: 1px solid #ddf0c8; border-radius: 16px; padding: 18px; }
+.resultWarn { background: #fff8e8; border: 1px solid #f4d58d; border-radius: 16px; padding: 18px; }
+.bigText { font-size: 34px; font-weight: 800; margin-bottom: 8px; }
+.noteBox { margin-top: 16px; padding: 16px; background: #f6f8fb; border-radius: 14px; }
+.historyCard { margin-top: 20px; }
+.historyList { display: grid; gap: 12px; }
+.historyItem { display: flex; justify-content: space-between; gap: 12px; padding: 14px; border: 1px solid #ececec; border-radius: 12px; }
+@media (max-width: 900px) { .grid { grid-template-columns: 1fr; } .header { flex-direction: column; } }
+.fieldError {
+  color: #b42318;
+  font-size: 13px;
+  margin-top: -6px;
+}   
+
+/* Admin Panel Styles */
+.headerBtns {
+  display: flex;
+  gap: 10px;
+}
+
+.adminMain {
+  margin-top: 20px;
+}
+
+.rowBetween {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.adminScroll {
+  overflow-x: auto;
+  margin-top: 10px;
+  background: white;
+  border-radius: 12px;
+  border: 1px solid #eee;
+}
+
+.adminTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.adminTable th, .adminTable td {
+  text-align: left;
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+}
+
+.adminTable th {
+  background: #fcfcfc;
+  font-weight: 600;
+  color: #666;
+}
+
+.badgeAdmin {
+  background: #eef4ff;
+  color: #1f6feb;
+  border: 1px solid #d0e1ff;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.badgeUser {
+  background: #f1f3f5;
+  color: #495057;
+  border: 1px solid #dee2e6;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.createBox {
+  background: #f6f8fb;
+  border: 1px solid #e1e4e8;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.adminForm {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr auto;
+  gap: 12px;
+  align-items: flex-end;
+}
+
+.adminForm input {
+  height: 42px;
+  border: 1px solid #d1d5da;
+  border-radius: 8px;
+  padding: 0 12px;
+}
+
+@media (max-width: 900px) {
+  .adminForm {
+    grid-template-columns: 1fr;
+  }
+}
